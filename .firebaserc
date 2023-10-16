@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-ionic-auth-app": {
+      "hosting": {
+        "app": [
+          "angular-ionic-auth-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-ionic-auth-app"
+  }
+}

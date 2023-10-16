@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true">
+
+  <div [formGroup]="regForm" novalidate>
+
+    <ion-title class="title">Welcome</ion-title>
+    <p class="subTitle">Sign up to create Your Account</p>
+  </div>
+
+  <form action="">
+
+    <div class="ion-padding">
+
+      <ion-item>
+        <ion-input formControlName="fullname" placeholder="name" class="input"></ion-input>
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-item>
+
+      <div class="">
+        <ion-text>
+          Full Name is required
+        </ion-text>
+      </div>
+
+      <ion-item>
+        <ion-input formControlName="email" placeholder="email" class="input"></ion-input>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </ion-item>
+
+      <ion-item>
+        <ion-input formControlName="password" placeholder="password" class="input"></ion-input>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </ion-item>
+    </div>
+
+    <div class="signinLink">
+      <p>Already a Member? &nbsp;<a [routerLink]="['/login']" style="color: #da9c2b;">Signin now</a></p>
+    </div>
+
+    <ion-fab vertical="bottom" horizontal="end" style="margin-bottom: 30px;">
+
+      <ion-fab-button [routerLink]="['/home']">
+
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+</ion-content>
