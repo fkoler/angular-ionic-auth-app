@@ -27,12 +27,12 @@ export class LoginPage implements OnInit {
       email: ['', [
         Validators.required,
         Validators.email,
-        Validators.pattern('[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$'),
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ]],
 
       password: ['', [
         Validators.required,
-        Validators.pattern('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'),
+        Validators.pattern('^.{8,15}$'),
       ]],
     });
   }
@@ -45,26 +45,19 @@ export class LoginPage implements OnInit {
   async logIn() {
 
     const loading = await this.loadingController.create();
-
     await loading.present();
 
-    if (this.loginForm?.valid) {
+    const user = await this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).catch((err) => {
+      console.error(err);
+      loading.dismiss();
+    });
 
-      const user = await this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password)
-        .catch((err) => {
+    if (user) {
 
-          console.error(err);
-          loading.dismiss();
-        });
-
-      if (user) {
-
-        loading.dismiss();
-        this.router.navigate(['/home']);
-      } else {
-
-        console.log('Provide correct values');
-      }
+      loading.dismiss();
+      this.router.navigate(['/home']);
+    } else {
+      console.log('Provide correct values');
     }
   }
 }

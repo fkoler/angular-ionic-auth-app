@@ -1,30 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset',
   templateUrl: './reset.page.html',
   styleUrls: ['./reset.page.scss'],
 })
-export class ResetPage implements OnInit {
-
-  email!: string;
+export class ResetPage {
+  resetForm: FormGroup;
 
   constructor(
-    public authService: AuthenticationService,
-    public router: Router,
-  ) { }
+    private formBuilder: FormBuilder,
+    private authService: AuthenticationService,
+    private router: Router
+  ) {
+    this.resetForm = this.formBuilder.group({
+      email: [
+        '',
+        [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+      ],
+    });
+  }
 
-  ngOnInit() { }
-
-  async resetPassword() {
-
-    this.authService.resetPassword(this.email)
-      .then(() => {
-        console.log('reset link sent');
-        this.router.navigate(['/login'])
-      })
-      .catch((err) => console.error(err));
+  resetPassword() {
+    if (this.resetForm.valid) {
+      this.authService.resetPassword(this.resetForm.value.email)
+        .then(() => {
+          console.log('Reset link sent');
+          this.router.navigate(['/login']);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      console.log('Invalid email address');
+    }
   }
 }

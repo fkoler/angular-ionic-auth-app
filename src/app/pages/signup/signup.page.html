@@ -51,8 +51,7 @@
         </ion-text>
 
         <ion-text *ngIf="errorControl.password.errors?.pattern">
-          Password must contain at least one Number and one uppercase and lowercase Letter, and at least 8 or more
-          Characters
+          Password should be at between 8 - 15 characters long.
         </ion-text>
       </div>
     </div>
@@ -63,7 +62,7 @@
 
     <ion-fab vertical="bottom" horizontal="end" style="margin-bottom: 30px;">
 
-      <ion-fab-button (click)="signUp()">
+      <ion-fab-button (click)="signUp()" [disabled]="!regForm.valid">
 
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-fab-button>
