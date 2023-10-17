@@ -13,8 +13,8 @@ import { ResetPage } from './reset.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ResetPageRoutingModule
+    ResetPageRoutingModule,
   ],
   declarations: [ResetPage]
 })
-export class ResetPageModule {}
+export class ResetPageModule { }

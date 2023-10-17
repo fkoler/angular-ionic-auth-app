@@ -5,16 +5,16 @@
       <p class="subTitle">To recieve a reset Password Link</p>
     </ion-title>
   </div>
-  <div class="">
+  <div class="container">
 
     <ion-item>
-      <ion-input placeholder="Enter Your Email" class="input"></ion-input>
+      <ion-input [(ngModel)]="email" placeholder="Enter Your Email" class="input"></ion-input>
       <ion-icon name="person-outline"></ion-icon>
     </ion-item>
 
     <ion-fab vertical="bottom" horizontal="end" style="margin-bottom: 30px;">
 
-      <ion-fab-button [routerLink]="['/login']">
+      <ion-fab-button (click)="resetPassword()">
 
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-fab-button>
