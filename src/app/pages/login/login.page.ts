@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +14,11 @@ export class LoginPage implements OnInit {
   loginForm!: FormGroup;
 
   constructor(
-    public formBuilder: FormBuilder,
-    public loadingController: LoadingController,
-    public authService: AuthenticationService,
-    public router: Router,
+
+    private formBuilder: FormBuilder,
+    private loadingController: LoadingController,
+    private authService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -37,11 +38,6 @@ export class LoginPage implements OnInit {
     });
   }
 
-  get errorControl() {
-
-    return this.loginForm?.controls;
-  };
-
   async logIn() {
 
     const loading = await this.loadingController.create();
@@ -54,6 +50,7 @@ export class LoginPage implements OnInit {
 
     if (user) {
 
+      localStorage.setItem('userEmail', this.loginForm.value.email);
       loading.dismiss();
       this.router.navigate(['/home']);
     } else {

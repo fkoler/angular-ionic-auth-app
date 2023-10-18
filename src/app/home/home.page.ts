@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
 
@@ -7,18 +7,29 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
 
-  user: any;
+export class HomePage implements OnInit {
 
-  constructor(
-    public authService: AuthenticationService,
-    public router: Router,
-  ) {
-    this.user = authService.getProfile();
+  email: any;
+
+  constructor(public authService: AuthenticationService, public router: Router) { }
+
+  ngOnInit() {
+
+    const userEmail = localStorage.getItem('userEmail');
+
+    if (userEmail) {
+
+      this.email = userEmail;
+    } else {
+
+      console.log('User email not found.');
+    }
   }
 
-  async logOut() {
+  logOut() {
+
+    localStorage.removeItem('userEmail');
 
     this.authService.signOut()
       .then(() => this.router.navigate(['/landing']))

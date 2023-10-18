@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
   templateUrl: './reset.page.html',
   styleUrls: ['./reset.page.scss'],
 })
+
 export class ResetPage {
+
   resetForm: FormGroup;
 
   constructor(
@@ -25,7 +27,9 @@ export class ResetPage {
   }
 
   resetPassword() {
+
     if (this.resetForm.valid) {
+
       this.authService.resetPassword(this.resetForm.value.email)
         .then(() => {
           console.log('Reset link sent');

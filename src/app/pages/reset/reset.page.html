@@ -1,20 +1,28 @@
 <ion-content [fullscreen]="true">
+
   <div class="header">
-    <ion-title class="title">
-      Enter Your Email
-      <p class="subTitle">To receive a reset Password Link</p>
-    </ion-title>
+
+    <ion-title class="title">Enter Your Email</ion-title>
+    <p class="subTitle">To receive a reset Password Link</p>
+
   </div>
-  <div class="container">
+
+  <div class="container-reset">
+
     <form [formGroup]="resetForm">
+
       <ion-item>
+
         <ion-input formControlName="email" placeholder="Enter Your Email" class="input"></ion-input>
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
+
       <ion-fab vertical="bottom" horizontal="end" style="margin-bottom: 30px;">
+
         <ion-fab-button (click)="resetPassword()" [disabled]="!resetForm.valid">
           <ion-icon name="chevron-forward"></ion-icon>
         </ion-fab-button>
+
       </ion-fab>
     </form>
   </div>
