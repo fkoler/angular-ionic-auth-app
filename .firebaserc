@@ -6,6 +6,13 @@
           "angular-ionic-auth-app"
         ]
       }
+    },
+    "angularionicauthapp": {
+      "hosting": {
+        "app": [
+          "angularionicauthapp"
+        ]
+      }
     }
   },
   "projects": {

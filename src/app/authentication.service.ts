@@ -24,12 +24,12 @@ export class AuthenticationService {
     return await this.ngFireAuth.sendPasswordResetEmail(email);
   };
 
-  async signOut(){
+  async signOut() {
 
     return await this.ngFireAuth.signOut();
   };
 
-  async getProfile(){
+  async getProfile() {
 
     return await this.ngFireAuth.currentUser;
   };
