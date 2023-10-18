@@ -53,6 +53,9 @@ export class SignupPage implements OnInit {
     });
 
     if (user) {
+
+      localStorage.setItem('userEmail', this.regForm.value.email);
+
       loading.dismiss();
       this.router.navigate(['/home']);
     } else {

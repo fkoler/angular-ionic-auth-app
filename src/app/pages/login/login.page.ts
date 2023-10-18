@@ -51,6 +51,7 @@ export class LoginPage implements OnInit {
     if (user) {
 
       localStorage.setItem('userEmail', this.loginForm.value.email);
+
       loading.dismiss();
       this.router.navigate(['/home']);
     } else {
